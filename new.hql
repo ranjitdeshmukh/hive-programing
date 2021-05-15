@@ -21,3 +21,25 @@ where cases = 1;
 select Country,confirm from(select *, row_number()over(order by confirm asc) cases
 					   from county_wise)x
 where cases = 1;
+
+--for the death rates
+
+select Country,death from(select *, DENSE_RANK()over(order by death desc) highst_deaths
+					   from county_wise)x
+where highst_deaths = 1;
+
+
+select Country,death from(select *, DENSE_RANK()over(order by death asc) lowest_deaths
+					   from county_wise)x
+where lowest_deaths = 1;
+
+--for the rocovery rates
+
+select Country,recoverd from(select *, DENSE_RANK()over(order by recoverd desc) highst_recoverd
+					   from county_wise)x
+where highst_deaths = 1;
+
+
+select Country,recoverd from(select *, DENSE_RANK()over(order by recoverd asc) lowest_recoverd
+					   from county_wise)x
+where lowest_deaths = 1;
