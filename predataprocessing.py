@@ -10,22 +10,14 @@ df_worldometer_data = spark.read.csv(
 df_country_wise_latest = df_country_wise_latest.toPandas()
 df_day_wise = df_day_wise.toPandas()
 df_worldometer_data = df_worldometer_data.toPandas()
-
-
 df_worldometer_data.head()
-
 
 df_worldometer_data.drop(['NewCases', 'NewDeaths', 'NewRecovered', 'Tot Cases/1M pop', 'Deaths/1M pop', 'TotalTests', 'Tests/1M pop',
                           'WHO Region'
                           ], axis=1, inplace=True)
 
-
 df_worldometer_data.dtypes
-
-
 df_worldometer_data.isnull().sum()
-
-
 
 #convert and save the file in the azure blob storage
 spark_df = spark.createDataFrame(df_worldometer_data)
